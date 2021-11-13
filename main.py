@@ -6,6 +6,12 @@ import amfm_decompy.basic_tools as basic
 
 
 app = FastAPI(title='Pitch detection in audio')
+
+@app.get("/")
+async def index():
+    return RedirectResponse(url="/docs")
+
+
 @app.post("/upload_audio/")
 async def root(audio: UploadFile = File(...)):
     print(audio.file)
