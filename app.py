@@ -1,10 +1,11 @@
-import os
 from fastapi import FastAPI, File, UploadFile
-from uvicorn import run
+from uvicorn 
+from starlette.responses import RedirectResponse
 import amfm_decompy.pYAAPT as pYAAPT
 import amfm_decompy.basic_tools as basic
 
-app = FastAPI()
+
+app = FastAPI(title='Pitch detection in audio')
 @app.post("/upload_audio/")
 async def root(audio: UploadFile = File(...)):
     print(audio.file)
@@ -33,4 +34,4 @@ async def root(audio: UploadFile = File(...)):
 
 
 if __name__ == "__main__":
-    run(app, host="0.0.0.0", port=7000)
+    uvicorn.run(app, debug=True)
